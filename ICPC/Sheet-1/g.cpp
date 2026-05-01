@@ -4,8 +4,9 @@ using namespace std;
 
 
 int main(){
-    int n;
+    long long n;
     cin >> n;
 
-
+    //summation upto n
+    cout << (n*(n+1))/2;
 }
