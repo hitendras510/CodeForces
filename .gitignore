@@ -1,1 +1,23 @@
+# 🔹 Compiled binaries
+*.out
+*.exe
+*.o
+
+# 🔹 VS Code
 .vscode/
+
+# 🔹 OS junk
+.DS_Store
+Thumbs.db
+
+# 🔹 Temp files
+*.log
+*.tmp
+
+# 🔹 Build systems
+build/
+cmake-build-*/
+
+# 🔹 Competitive programming I/O
+input.txt
+output.txt
