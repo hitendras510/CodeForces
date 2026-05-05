@@ -1,37 +1,36 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-
-
-int main(){
+int main() {
     string s;
     cin >> s;
 
-    int pos = s.find('.');
-    if (pos == string::npos){
-        //no decimal found
-        cout <<"int "<<s;
-    }else{
-        string intPart = s.substr(0,pos); 
-        string decPart =  s.substr(pos + 1);
+    size_t pos = s.find('.');  // fix: size_t, not int
 
-        //check if the decimal part is empty (like : 123.)
-        if(decPart.empty()){
-            cout << "int " << intPart;
-            return 0;
-        }
-
-        //if decimal part is all zero
-        bool isZero = all_of(decPart.begin(), decPart.end(), [](char c) {
-            return c == '0';
-        });
-        
-
-        if(isZero){
-            cout << "int " << intPart;
-        }else{
-            cout << "float " << intPart << " " << decPart;
-        }
+    if (pos == string::npos) {
+        cout << "int " << stoi(s);
+        return 0;
     }
+
+    string intPart = s.substr(0, pos);
+    string decPart = s.substr(pos + 1);
+
+    // Guard against malformed input like ".5" or "3."
+    if (intPart.empty() || decPart.empty()) {
+        cout << "invalid input";
+        return 1;
+    }
+
+    int num = stoi(intPart);
+
+    bool isZero = all_of(decPart.begin(), decPart.end(),
+                         [](char c) { return c == '0'; });
+
+    if (isZero) {
+        cout << "int " << num;
+    } else {
+        cout << "float " << num << " " << decPart;  // decPart kept as string to preserve leading zeros
+    }
+
     return 0;
 }
